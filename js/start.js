@@ -3,11 +3,12 @@ const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
 const endPoint = 9;
-const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const wordList =
+var words = [];
 
 function setResult(){ //이부분 수정
-  
+  var message = words.join(" ");
+  const resultName = document.querySelector('.resultname');
+  resultName.innerHTML = message;
 }
 
 function goResult(){
@@ -43,11 +44,8 @@ function addAnswer(answerText, qIdx, idx){
       children[i].style.animation = "fadeOut 0.5s";
     }
     setTimeout(() => { //이부분 수정
-      var target = qnaList[qIdx].a[idx].keyword;
-      for(let i = 0; i < target.length; i++){
-        wordList.add
-      }
-
+      var target = qnaList[qIdx].a[idx].type;
+      words = words.concat(target);
       for(let i = 0; i < children.length; i++){
         children[i].style.display = 'none';
       }
@@ -80,6 +78,7 @@ function begin(){
     setTimeout(() => {
       main.style.display = "none";
       qna.style.display = "block"
+      document.body.style.backgroundColor = "#660E29";
     }, 450)
     let qIdx = 0;
     goNext(qIdx);
