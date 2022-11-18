@@ -2,25 +2,23 @@ const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 const endPoint = 9;
+
 var words = [];
 var resultLine = "";
 function setResult(){ 
   var message = words.join(" ");
   const resultName = document.querySelector('.resultname');
 
-  resultName.innerHTML = "결과 로딩 중..."
-  setTimeout(() => {
-  }, 10000);
+  document.querySelector('.resultname').innerHTML = "결과 로딩 중..."
   
   const spawn = require('child_process').spawn;
-
   const r = spawn('python3', ['./script.py', message]);
   setTimeout(() => {
 
   }, 15000);
 
   r.stdout.on('data', function(data) {
-    window.alert(data.toString());
+    resultName.innerHTML = data.toString();
   });
 
   r.stderr.on('data', function(data) {
