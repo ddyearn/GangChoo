@@ -48,7 +48,9 @@ def tfidf(t, d, D):
 vectorizer = TfidfVectorizer(min_df=1, decode_error='ignore')
 X = vectorizer.fit_transform(contents_for_vectorize)
 
-#테스트 문장
+#테스트 문장 예시
+#test = ["어렵지만 교수님께서 세세하게 잘 설명해주시고 내용이 유익한 강의"]
+
 test = [sys.argv[1]]
 test_tokens = [t.morphs(row) for row in test]
 
@@ -90,6 +92,10 @@ def read_csv(filepath):
 elements = read_csv("./review.csv")
 index = dist.index(min(dist))
 
-print("Best lecture is ", elements[index + 1][1], " ", elements[index + 1][2])
-print("test -->", test)
-print("best lecture review -->", elements[index + 1][4])
+#테스트 출력
+#print("Best lecture is ", elements[index + 1][1], " ", elements[index + 1][2])
+#print("test -->", test)
+#print("best lecture review -->", elements[index + 1][4])
+
+print("[", elements[index + 1][1], "교수님의 ", elements[index + 1][2], "]")
+print("\"" + elements[index + 1][4] + "\"")
